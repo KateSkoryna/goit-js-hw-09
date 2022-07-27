@@ -22,7 +22,6 @@ function onClickStartColorChange(event) {
 
   timerId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
-    console.log(getRandomHexColor());
   }, 1000);
 }
 

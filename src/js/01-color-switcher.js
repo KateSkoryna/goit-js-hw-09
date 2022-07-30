@@ -1,7 +1,7 @@
 const startBtn = document.querySelector('button[data-start]');
 const stopBtn = document.querySelector('button[data-stop]');
 const body = document.querySelector('body');
-const DISABLE_CLASS = 'disable';
+const DISABLE_CLASS = 'disabled';
 let timerId = null;
 
 function getRandomHexColor() {

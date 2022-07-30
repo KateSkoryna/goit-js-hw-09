@@ -37,13 +37,14 @@ const inputDate = document.querySelector('#datetime-picker')._flatpickr;
 startBtn.addEventListener('click', onClickStartCount);
 
 function onClickStartCount(event) {
-  if (event.target.classList.contains('active-js')) {
+  if (event.target.classList.contains(DISABLE_CLASS)) {
     return;
   }
 
   let timerId = null;
+
   timerId = setInterval(() => {
-    startBtn.classList.add('active-js');
+    startBtn.classList.remove(DISABLE_CLASS);
 
     const deltaTime = choosedDate - Date.now();
 

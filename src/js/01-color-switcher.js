@@ -4,10 +4,6 @@ const body = document.querySelector('body');
 const DISABLE_CLASS = 'disabled';
 let timerId = null;
 
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
 startBtn.addEventListener('click', onClickStartColorChange);
 stopBtn.addEventListener('click', onClickStopColorChange);
 
@@ -26,14 +22,22 @@ function onClickStartColorChange(event) {
 }
 
 function onClickStopColorChange(event) {
+  if (timerId === null) {
+    return;
+  }
   const currentEl = event.target;
   chaeckDisableStatus(currentEl, startBtn, DISABLE_CLASS);
   clearInterval(timerId);
 }
 
-function chaeckDisableStatus(activeEl, unActiveEl, classAdd) {
-  if (!activeEl.classList.contains(classAdd)) {
-    activeEl.classList.add(classAdd);
+function chaeckDisableStatus(activeEl, disabledEl, classAdd) {
+  if (activeEl.classList.contains(classAdd)) {
+    return;
   }
-  unActiveEl.classList.remove(classAdd);
+  activeEl.classList.add(classAdd);
+  disabledEl.classList.remove(classAdd);
+}
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }

@@ -30,17 +30,10 @@ img {
   text-transform: uppercase;
 }
 
-.btn-js {
-  width: 100px;
-  height: 20px;
-  border-color: transparent;
-  background-color: #fff;
-  text-transform: uppercase;
-}
-
 .disabled {
   background-color: rgba(255, 255, 255, .4);
   color: rgba(0, 0, 0, .4);
+  border-color: rgba(0, 0, 0, .1);
 }
 
 .btn:first-child {

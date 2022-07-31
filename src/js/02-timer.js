@@ -56,6 +56,7 @@ function onClickStartCount(event) {
       timer.seconds.textContent = seconds;
     } else {
       clearInterval(timerId);
+      startBtn.setAttribute('disabled', 'disabled');
     }
   }, 1000);
 }

@@ -4,7 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const startBtn = document.querySelector('button[data-start]');
 
-const DISABLE_CLASS = 'disabled';
+const DISABLED = 'disabled';
 let choosedDate = null;
 
 const timer = {
@@ -27,8 +27,7 @@ const options = {
       Notify.failure('Please choose a date in the future!');
       return;
     }
-    startBtn.removeAttribute('disabled');
-    return choosedDate;
+    startBtn.removeAttribute(DISABLED);
   },
 };
 
@@ -43,9 +42,8 @@ function onClickStartCount(event) {
     return;
   }
   timerId = setInterval(() => {
-    startBtn.removeAttribute('disabled');
-
     const deltaTime = choosedDate - Date.now();
+    console.log(deltaTime);
 
     const { days, hours, minutes, seconds } = convertMs(deltaTime);
 
@@ -55,8 +53,12 @@ function onClickStartCount(event) {
       timer.minutes.textContent = minutes;
       timer.seconds.textContent = seconds;
     } else {
+      Notify.success('Sale starts NOW!', {
+        timeout: 20000,
+        clickToClose: true,
+      });
       clearInterval(timerId);
-      startBtn.setAttribute('disabled', 'disabled');
+      event.target.setAttribute(DISABLED, DISABLED);
     }
   }, 1000);
 }

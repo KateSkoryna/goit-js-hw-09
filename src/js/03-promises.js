@@ -8,26 +8,26 @@ function createPromisesOnSubmit(event) {
   event.preventDefault();
   const { delay, step, amount } = event.target;
 
-  const deltaTime = parseInt(delay.value);
+  const delayTime = parseInt(delay.value);
   const stepTime = parseInt(step.value);
   const amountNumber = parseInt(amount.value);
 
-  setTimeout(() => {
-    countPromises(amountNumber, stepTime);
-  }, deltaTime);
+  countPromises(amountNumber, delayTime, stepTime);
 }
 
-function countPromises(count, stepTime) {
-  let time = 0;
-
-  for (let i = 1; i <= count; i += 1) {
-    time += stepTime;
+function countPromises(count, delay, step) {
+  for (let i = 0; i < count; i += 1) {
+    let time = delay + step * i;
     createPromise(i, time)
       .then(({ position, delay }) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {
+          timeout: 2000,
+        });
       })
       .catch(({ position, delay }) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {
+          timeout: 2000,
+        });
       });
   }
 }

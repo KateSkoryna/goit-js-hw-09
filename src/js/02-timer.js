@@ -46,7 +46,6 @@ function onClickStartCount(event) {
     startBtn.removeAttribute('disabled');
 
     const deltaTime = choosedDate - Date.now();
-    console.log(deltaTime);
 
     const { days, hours, minutes, seconds } = convertMs(deltaTime);
 

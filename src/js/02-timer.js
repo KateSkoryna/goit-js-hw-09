@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const startBtn = document.querySelector('button[data-start]');
+const input = document.querySelector('#datetime-picker');
 
 const DISABLED = 'disabled';
 let choosedDate = null;
@@ -38,13 +39,13 @@ startBtn.addEventListener('click', onClickStartCount);
 let timerId = null;
 
 function onClickStartCount(event) {
+  event.target.setAttribute(DISABLED, DISABLED);
+  input.setAttribute(DISABLED, DISABLED);
   if (timerId > 0) {
     return;
   }
   timerId = setInterval(() => {
     const deltaTime = choosedDate - Date.now();
-    console.log(deltaTime);
-
     const { days, hours, minutes, seconds } = convertMs(deltaTime);
 
     if (deltaTime >= 0) {
@@ -58,7 +59,6 @@ function onClickStartCount(event) {
         clickToClose: true,
       });
       clearInterval(timerId);
-      event.target.setAttribute(DISABLED, DISABLED);
     }
   }, 1000);
 }
